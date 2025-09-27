@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Language Practice</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f3f6f8;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    .question-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .option {
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 5px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover {
+      background-color: #e9ecef;
+    }
+
+    .option.selected {
+      background-color: #1b5e20;
+      color: white;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #28a745;
+    }
+
+    .wrong {
+      color: #dc3545;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">LinguaZone</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+        <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="practice.html">Practice</a></li>
+        <li class="nav-item"><a class="nav-link" href="progress.html">Progress</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="question-box" id="spanish-box">
+      <h4>Spanish Practice</h4>
+      <p id="spanish-question"></p>
+      <div id="spanish-options"></div>
+      <button class="btn btn-primary mt-3" onclick="nextQuestion('spanish')">Next</button>
+    </div>
+
+    <div class="question-box" id="french-box">
+      <h4>French Practice</h4>
+      <p id="french-question"></p>
+      <div id="french-options"></div>
+      <button class="btn btn-primary mt-3" onclick="nextQuestion('french')">Next</button>
+    </div>
+
+    <div class="question-box" id="japanese-box">
+      <h4>Japanese Practice</h4>
+      <p id="japanese-question"></p>
+      <div id="japanese-options"></div>
+      <button class="btn btn-primary mt-3" onclick="nextQuestion('japanese')">Next</button>
+    </div>
+
+    <div class="question-box" id="german-box">
+      <h4>German Practice</h4>
+      <p id="german-question"></p>
+      <div id="german-options"></div>
+      <button class="btn btn-primary mt-3" onclick="nextQuestion('german')">Next</button>
+    </div>
+
+    <div class="question-box" id="korean-box">
+      <h4>Korean Practice</h4>
+      <p id="korean-question"></p>
+      <div id="korean-options"></div>
+      <button class="btn btn-primary mt-3" onclick="nextQuestion('korean')">Next</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = {
+      spanish: [
+        { q: "What is 'apple' in Spanish?", o: ["Manzana", "Agua", "Pan", "Casa"], a: 0 },
+        { q: "What is 'house' in Spanish?", o: ["Casa", "Perro", "Agua", "Cielo"], a: 0 },
+        { q: "What is 'dog' in Spanish?", o: ["Perro", "Gato", "Pez", "Rana"], a: 0 },
+        { q: "What is 'water' in Spanish?", o: ["Agua", "Fuego", "Tierra", "Viento"], a: 0 },
+        { q: "What is 'bread' in Spanish?", o: ["Pan", "Queso", "Fruta", "Azúcar"], a: 0 },
+      ],
+      french: [
+        { q: "What is 'hello' in French?", o: ["Bonjour", "Salut", "Merci", "Pardon"], a: 0 },
+        { q: "What is 'cat' in French?", o: ["Chat", "Chien", "Oiseau", "Lapin"], a: 0 },
+        { q: "What is 'thank you' in French?", o: ["Merci", "S'il vous plaît", "Bonjour", "Salut"], a: 0 },
+        { q: "What is 'bread' in French?", o: ["Pain", "Fromage", "Eau", "Lait"], a: 0 },
+        { q: "What is 'water' in French?", o: ["Eau", "Vin", "Jus", "Thé"], a: 0 },
+      ],
+      japanese: [
+        { q: "What is 'water' in Japanese?", o: ["Mizu", "Sakana", "Inu", "Neko"], a: 0 },
+        { q: "What is 'dog' in Japanese?", o: ["Inu", "Neko", "Tori", "Usagi"], a: 0 },
+        { q: "What is 'cat' in Japanese?", o: ["Neko", "Inu", "Kuma", "Kitsune"], a: 0 },
+        { q: "What is 'thank you' in Japanese?", o: ["Arigatou", "Konnichiwa", "Sayonara", "Ohayou"], a: 0 },
+        { q: "What is 'hello' in Japanese?", o: ["Konnichiwa", "Sayonara", "Arigatou", "Sumimasen"], a: 0 },
+      ],
+      german: [
+        { q: "What is 'apple' in German?", o: ["Apfel", "Haus", "Hund", "Milch"], a: 0 },
+        { q: "What is 'dog' in German?", o: ["Hund", "Katze", "Fisch", "Vogel"], a: 0 },
+        { q: "What is 'milk' in German?", o: ["Milch", "Wasser", "Saft", "Brot"], a: 0 },
+        { q: "What is 'house' in German?", o: ["Haus", "Tür", "Fenster", "Stuhl"], a: 0 },
+        { q: "What is 'bread' in German?", o: ["Brot", "Käse", "Ei", "Obst"], a: 0 },
+      ],
+      korean: [
+        { q: "What is 'hello' in Korean?", o: ["Annyeong", "Kamsahamnida", "Saranghae", "Jalga"], a: 0 },
+        { q: "What is 'thank you' in Korean?", o: ["Kamsahamnida", "Annyeong", "Jalga", "Saranghae"], a: 0 },
+        { q: "What is 'love' in Korean?", o: ["Saranghae", "Gomawo", "Annyeong", "Bap"], a: 0 },
+        { q: "What is 'rice' in Korean?", o: ["Bap", "Kimchi", "Gogi", "Mul"], a: 0 },
+        { q: "What is 'water' in Korean?", o: ["Mul", "Bap", "Gogi", "Kimchi"], a: 0 },
+      ]
+    };
+
+    let state = { spanish: 0, french: 0, japanese: 0, german: 0, korean: 0 };
+
+    function nextQuestion(lang) {
+      
+      const qIndex = state[lang];
+      /*
+      console.log(lang);
+      console.log(lang);
+      alert("lang="+lang+", qindex="+qIndex);
+      */
+      const question = quizData[lang][qIndex];
+      //alert("lang="+lang+", qindex="+qIndex+", question="+question);
+      const qEl = document.getElementById(`${lang}-question`);
+      const oEl = document.getElementById(`${lang}-options`);
+
+      if (!question) {
+        qEl.innerText = "🎉 You've completed all questions!";
+        oEl.innerHTML = "";
+        return;
+      }
+
+      qEl.innerText = question.q;
+      oEl.innerHTML = "";
+
+      question.o.forEach((opt, index) => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.innerText = opt;
+        div.onclick = () => {
+          const isCorrect = index === question.a;
+          const feedbackEl = document.createElement('div');
+          feedbackEl.className = 'feedback ' + (isCorrect ? 'correct' : 'wrong');
+          feedbackEl.innerText = isCorrect ? "✅ Your answer is correct!" : "❌ Your answer is wrong!";
+
+          // Remove previous feedback and highlight
+          oEl.querySelectorAll('.option').forEach(optEl => optEl.classList.remove('selected'));
+          const oldFeedback = oEl.querySelector('.feedback');
+          if (oldFeedback) oldFeedback.remove();
+
+          // Highlight current and show feedback
+          div.classList.add('selected');
+          oEl.appendChild(feedbackEl);
+        };
+        oEl.appendChild(div);
+      });
+
+      state[lang]++; //lang ++ means lang = lang + 1, 0+1, 1+1, 2+1
+    }
+
+    // Load first question for all languages
+    window.onload = () => {
+      for (const lang in quizData) {
+        nextQuestion(lang);
+      }
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How did you hear about us?</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+
+  <div class="container text-center mt-5">
+    <div class="progress mb-4" style="height: 8px;">
+      <div class="progress-bar bg-success" style="width: 30%;"></div>
+    </div>
+    <img src="./transparent-background-with-a-chick-free-png.webp" alt="Duo" height="80">
+    <h4 class="my-4">How did you hear about LinguaZone?</h4>
+
+    <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+      <div class="col"><button class="btn option-btn w-100">👨‍👩‍👧‍👦 Friends/family</button></div>
+      <div class="col"><button class="btn option-btn w-100">🎵 TikTok</button></div>
+      <div class="col"><button class="btn option-btn w-100">🔍 Google Search</button></div>
+      <div class="col"><button class="btn option-btn w-100">📱 Facebook/Instagram</button></div>
+      <div class="col"><button class="btn option-btn w-100">📺 TV</button></div>
+      <div class="col"><button class="btn option-btn w-100">▶️ YouTube</button></div>
+      <div class="col"><button class="btn option-btn w-100">📰 News/article/blog</button></div>
+      <div class="col"><button class="btn option-btn w-100">💬 Other</button></div>
+    </div>
+
+    <button id="continueBtn" class="btn btn-secondary mt-4" disabled>Continue</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.option-btn');
+    continueBtn.addEventListener('click', () => {
+  window.location.href = 'reason.html';
+});
+
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('btn-success'));
+        btn.classList.add('btn-success');
+        continueBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>

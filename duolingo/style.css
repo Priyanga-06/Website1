@@ -1,0 +1,61 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+}
+.card {
+  border: none;
+  background-color: #e0f7fa;
+  border-radius: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.lang-card {
+  border: 2px solid #eee;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+  background-color: white;
+  height: 100%;
+  cursor: pointer;
+}
+
+.lang-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.lang-card img {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.lang-name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.lang-learners {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.option-btn {
+  background-color: #212529;
+  color: white;
+  border: 1px solid #444;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.option-btn:hover {
+  background-color: #2a2a2a;
+}
